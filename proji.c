@@ -15,13 +15,17 @@ struct fot
     int buts;
 };
 struct fot joueurs[MAX];
-struct fot f[MAX];
 
 void ajout_one();
 void ajout();
 void ajout_plu();
 void affich();
 void affich_alphabi();
+void affiche_age();
+void affiche_poust();
+void Modifier();
+void Modifier_poste();
+void Modifier_age();
 int main() {
     int choice;
     do
@@ -40,6 +44,7 @@ int main() {
 
             break;
         case 3:
+        Modifier();
 
             break;
         case 4:
@@ -59,7 +64,7 @@ int main() {
     int ajo;
     do
     {
-        printf("1, Ajouter un nouveau joueur\n2, Ajouter plusieurs joueurs.\n0 bak to monu");
+        printf("1, Ajouter un nouveau joueur\n2, Ajouter plusieurs joueurs.\n0 bak to monu\n");
         scanf("%d", &ajo);
         switch (ajo)
         {
@@ -78,38 +83,42 @@ int main() {
 void ajout_one()
 {
 
-    struct fot f;
+    
      if (player >= MAX)
      {
          printf("bas de donne plan");
          return ;
      }
+    
     printf("### le nom  ###\n");
 
     printf("entre le nom: \n");
-    scanf("%s", f.name);
+    scanf("%s", joueurs[0].name);
 
     printf("### prenome ###\n");
     printf("entre le prenom:  \n");
-    scanf("%s", f.prenom);
+    scanf("%s", joueurs[0].prenom);
     printf("### poste ###\n");
     printf("entre poste : \n");
-    scanf("%s", f.poste);
+    scanf("%s", joueurs[0].poste);
     printf("### numeroMaillot ###\n");
     printf("entre numeroMaillot : \n");
-    scanf("%d", &f.numeroMaillot);
+    scanf("%d", &joueurs[0].numeroMaillot);
     printf("### age ###\n");
     printf("entre age : \n");
-    scanf("%d", &f.age);
+    scanf("%d", &joueurs[0].age);
     printf("### buts ###\n");
     printf("entre buts : \n");
-    scanf("%d", &f.buts);
+    scanf("%d", &joueurs[0].buts);
     
-    // srand(time(NULL));
+    srand(time(NULL));
+    joueurs[0].id = rand() % 1000 + 1000;
+    player++;
 }
+
 void ajout_plu()
 {
-    struct fot f[MAX];
+   
     int n;
     printf("entre le nombe de  joueur qui ajout");
     scanf("%d", &n);
@@ -122,24 +131,24 @@ void ajout_plu()
     {
         printf("### le nom  ###\n");
         printf("entre le nom: \n");
-        scanf("%s", f[i].name);
+        scanf("%s", joueurs[i].name);
 
         printf("### prenome ###\n");
         printf("entre le prenom:  \n");
-        scanf("%s", f[i].prenom);
+        scanf("%s", joueurs[i].prenom);
         printf("### poste ###\n");
         printf("entre  poste: \n");
-        scanf("%s", f[i].poste);
+        scanf("%s", joueurs[i].poste);
         printf("### numeroMaillot ###\n");
         printf("entre numeroMaillot : \n");
-        scanf("%d", &f[i].numeroMaillot);
+        scanf("%d", &joueurs[i].numeroMaillot);
         printf("### age ###\n");
         printf("entre age : \n");
-        scanf("%d", &f[i].age);
+        scanf("%d", &joueurs[i].age);
         printf("### buts ###\n");
         printf("entre buts : \n");
-        scanf("%d", &f[i].buts);
-         f[i].id = rand() % 1000 + 1000;
+        scanf("%d", &joueurs[i].buts);
+         joueurs[i].id = rand() % 1000 + 1000;
     player++;
     }
 }
@@ -158,6 +167,11 @@ void affich()
 
             break;
         case 2:
+        affiche_age();
+
+            break;
+            case 3:
+            affiche_poust();
 
             break;
         default:
@@ -167,23 +181,153 @@ void affich()
 }
 void affich_alphabi()
 {
-    struct fot cmp;
-
+   
     int jo;
     for (int i = 0; i < jo - 1; i++)
     {
         for (int j = i + 1; j < jo; j++)
         {
-            if (strcmp(joueurs[i].name, joueurs[j].name) > 0)
+            if (strcmp(joueurs[i].name, joueurs[j].name)>0)
             {
-                joueurs[i] = joueurs[j];
-                joueurs[j] = cmp;
+                char cmmp[15];
+                strcpy(cmmp,joueurs[i].name);
+                strcpy(joueurs[i].name,joueurs[j].name) ;
+
             }
         }
     }
     printf("___#liste nom de joueur#___");
-    for (int i = 0; i < jo; i++)
+    for (int i = 0; i < player; i++)
     {
-        printf("\n le nom: %s\nle prenom: %s\nposte: %s\nnumeroMaillot%d\n age%d\nbuts%d\n", cmp.name, f[i].prenom, f[i].poste, f[i].numeroMaillot, f[i].age, f[i].buts);
+        printf("\n le nom: %s\nle prenom: %s\nposte: %s\nnumeroMaillot%d\n age%d\nbuts%d\n", joueurs[i].name, joueurs[i].prenom, joueurs[i].poste, joueurs[i].numeroMaillot, joueurs[i].age, joueurs[i].buts);
     }
+}
+void affiche_age(){
+
+
+    for (int i = 0; i < player - 1; i++)
+    {
+        for (int j = i + 1; j < player; j++)
+        {
+            if (joueurs[i].age > joueurs[j].age)
+            {
+                struct fot cmmp;
+                joueurs[i]=joueurs[j];
+                joueurs[j] = cmmp;
+                
+
+            }
+        }
+    }
+    printf("___#liste nom de joueur#___");
+    for (int i = 0; i < player; i++)
+    {
+        printf("\n le nom: %s\nle prenom: %s\nposte: %s\nnumeroMaillot%d\n age%d\nbuts%d\n", joueurs[i].name, joueurs[i].prenom, joueurs[i].poste, joueurs[i].numeroMaillot, joueurs[i].age, joueurs[i].buts);
+
+}
+}
+void affiche_poust(){
+    for (int i = 0; i < player - 1; i++)
+    {
+        for (int j = i + 1; j < player; j++)
+        {
+            if (strcmp(joueurs[i].poste, joueurs[j].poste)>0)
+            {
+                char cmmp[15];
+                strcpy(cmmp,joueurs[i].poste);
+                strcpy(joueurs[i].poste,joueurs[j].poste) ;
+
+            }
+        }
+    }
+    printf("___#liste nom de joueur#___");
+    for (int i = 0; i < player; i++)
+    {
+        printf("\n le nom: %s\nle prenom: %s\nposte: %s\nnumeroMaillot%d\n age%d\nbuts%d\n", joueurs[i].name, joueurs[i].prenom, joueurs[i].poste, joueurs[i].numeroMaillot, joueurs[i].age, joueurs[i].buts);
+
+
+}
+}
+void Modifier(){
+    int modifier;
+    do
+    {
+        printf("1, Modifier le poste d_un joueur.\n2, Modifier l_âge d_un joueur.\n3, Modifier le nombre de buts marqués par un joueur.\n0 bak to monu\n");
+        scanf("%d", &modifier);
+        switch (modifier)
+        {
+        case 1:
+        Modifier_poste();
+         
+
+            break;
+        case 2:
+        Modifier_age();
+        
+
+            break;
+        case 3:
+        void Modifier_buts();
+            
+
+            break;
+        default:
+            break;
+        }
+    } while ( modifier!= 0);
+
+
+}
+void Modifier_poste(){
+    char poste[MAX], nouvo_post[MAX];
+    int i;
+        printf("entre actual post \n");
+        scanf("%s", poste);
+        for(i=0; i<player;i++){
+            if(strcmp(joueurs[i].poste,poste)==0){
+                printf("entre nouvo post: \n");
+                scanf("%s", nouvo_post);
+                strcpy(joueurs[i].poste,nouvo_post);
+                
+            }
+        printf("\n le nom: %s\nle prenom: %s\nposte: %s\nnumeroMaillot%d\n age%d\nbuts%d\n", joueurs[i].name, joueurs[i].prenom, joueurs[i].poste, joueurs[i].numeroMaillot, joueurs[i].age, joueurs[i].buts);
+
+        }
+}
+void Modifier_age(){
+    int age, nouv_age;
+    int i;
+    int n;
+        printf("entre actual age \n");
+        scanf("%d", &age);
+        for(i=0; i<n;i++){
+            if(age == nouv_age){
+                printf("entre nouvo age: \n");
+                scanf("%d", &nouv_age);
+                joueurs[i].age = nouv_age;
+            }
+        }
+        printf("\n le nom: %s\nle prenom: %s\nposte: %s\nnumeroMaillot%d\n age%d\nbuts%d\n", joueurs[i].name, joueurs[i].prenom, joueurs[i].poste, joueurs[i].numeroMaillot, joueurs[i].age, joueurs[i].buts);
+
+
+}
+void Modifier_buts(){
+    int buts,novou_buts;
+    int i;
+    int n;
+        printf("entre actual buts \n");
+        scanf("%d", &buts);
+        for(i=0; i<n;i++){
+            if(buts == novou_buts){
+                printf("entre nouvo buts: \n");
+                scanf("%d", &novou_buts);
+                joueurs[i].buts = novou_buts;
+            }
+        }
+        
+            
+        
+        printf("\n le nom: %s\nle prenom: %s\nposte: %s\nnumeroMaillot%d\n age%d\nbuts%d\n", joueurs[i].name, joueurs[i].prenom, joueurs[i].poste, joueurs[i].numeroMaillot, joueurs[i].age, joueurs[i].buts);
+
+
 }
