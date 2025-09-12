@@ -195,10 +195,9 @@ void affich()
 void affich_alphabi()
 {
 
-    int jo;
-    for (int i = 0; i < jo - 1; i++)
+    for (int i = 0; i < player - 1; i++)
     {
-        for (int j = i + 1; j < jo; j++)
+        for (int j = i + 1; j < player; j++)
         {
             if (strcmp(joueurs[i].name, joueurs[j].name) > 0)
             {
@@ -260,7 +259,7 @@ void Modifier()
     int modifier;
     do
     {
-        printf("1, Modifier le poste d_un joueur.\n2, Modifier l_âge d_un joueur.\n3, Modifier le nombre de buts marqués par un joueur.\n0 bak to monu\n");
+        printf("1, Modifier le poste d_un joueur.\n2, Modifier l_âge d_un joueur.\n3, Modifier le nombre de buts marqués par un joueur.\n0 bak to monu\n0, munu\n");
         scanf("%d", &modifier);
         switch (modifier)
         {
@@ -411,16 +410,22 @@ void statistique()
         switch (statistique)
         {
         case 1:
+        statunombre();
 
             break;
         case 2:
+        agem();
+
             break;
         case 3:
+        plusbuts();
             break;
         case 4:
+        buteur();
 
             break;
         case 5:
+        stage();
             break;
 
         default:
