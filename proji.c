@@ -32,6 +32,12 @@ void suppremi();
 void recherche();
 void recherche_id();
 void recherche_name();
+void statistique();
+void statunombre();
+void agem();
+void plusbuts();
+void buteur();
+void stage();
 int main()
 {
     int choice;
@@ -61,6 +67,7 @@ int main()
             recherche();
             break;
         case 6:
+            statistique();
             break;
         default:
             break;
@@ -289,7 +296,6 @@ void Modifier_poste()
             scanf("%s", nouvo_post);
             strcpy(joueurs[i].poste, nouvo_post);
         }
-        // printf("id: %d\n le nom: %s\nle prenom: %s\nnumeroMaillot%d\nposte: %s\n age%d\nbuts%d\n",joueurs[i].id,joueurs[i].name, joueurs[i].prenom,joueurs[i].numeroMaillot, joueurs[i].poste,  joueurs[i].age, joueurs[i].buts);
     }
 }
 void Modifier_age()
@@ -306,7 +312,6 @@ void Modifier_age()
             scanf("%d", &nouv_age);
             joueurs[i].age = id;
         }
-        // printf("id: %d\n le nom: %s\nle prenom: %s\nposte: %s\nnumeroMaillot%d\n age%d\nbuts%d\n",joueurs[i].id, joueurs[i].name, joueurs[i].prenom, joueurs[i].poste, joueurs[i].numeroMaillot, joueurs[i].age, joueurs[i].buts);
     }
 }
 void Modifier_buts()
@@ -360,6 +365,7 @@ void recherche()
 
             break;
         case 2:
+            recherche_name();
 
             break;
         default:
@@ -393,5 +399,106 @@ void recherche_name()
         {
             printf("id: %d\nle nom: %s\nle prenom: %s\nposte: %s\nnumeroMaillot: %d\nage: %d\nbuts%d\n", joueurs[i].id, joueurs[i].name, joueurs[i].prenom, joueurs[i].poste, joueurs[i].numeroMaillot, joueurs[i].age, joueurs[i].buts);
         }
+    }
+}
+void statistique()
+{
+    int statistique;
+    do
+    {
+        printf("1, Afficher le nombre total de joueurs dans l_équip\n2, Afficher l_âge moyen des joueurs\n3, Afficher les joueurs ayant marqué plus de  buts\n4, Afficher le meilleur buteur\n5, Afficher le joueur le plus jeune et le plus âgé\n");
+        scanf("%d", &statistique);
+        switch (statistique)
+        {
+        case 1:
+
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+
+            break;
+        case 5:
+            break;
+
+        default:
+            break;
+        }
+    } while (statistique != 0);
+}
+void statunombre()
+{
+    printf("le nomber toutal est: %d\n", player);
+}
+void agem()
+{
+    int p;
+    for (int i = 0; i < player; i++)
+    {
+        p += joueurs[i].age;
+        p = p / player;
+        printf("lamwayane de lage est: %d\n", p);
+    }
+}
+void plusbuts()
+{
+    int x;
+    printf("entre x buts: ");
+    scanf("%d", &x);
+    for (int i = 0; i < player - 1; i++)
+    {
+        if (joueurs[i].buts > x)
+        {
+            printf("id: %d\nle nom: %s\nle prenom: %s\nposte: %s\nnumeroMaillot: %d\nage: %d\nbuts%d\n", joueurs[i].id, joueurs[i].name, joueurs[i].prenom, joueurs[i].poste, joueurs[i].numeroMaillot, joueurs[i].age, joueurs[i].buts);
+        }
+    }
+}
+void buteur()
+{
+    int b;
+    for (int i = 0; i < player; i++)
+    {
+        if(joueurs[i].buts<b){
+            printf("id: %d\nle nom: %s\nbuts%d\n", joueurs[i].id, joueurs[i].name, joueurs[i].buts);
+        }
+        
+    }
+    
+}
+void stage()
+{
+    for (int i = 0; i < player - 1; i++)
+    {
+        for (int j = i + 1; j < player; j++)
+        {
+            if (joueurs[i].age > joueurs[j].age)
+            {
+                struct fot cmmp;
+                joueurs[i] = joueurs[j];
+                joueurs[j] = cmmp;
+            }
+        }
+    }
+    for (int i = 0; i < player; i++)
+    {
+        printf(" le nom: %s\nla age%d", joueurs[i].name, joueurs[i].age);
+    }
+    for (int i = 0; i < player - 1; i++)
+    {
+        for (int j = i + 1; j < player; j++)
+        {
+            if (joueurs[i].age > joueurs[j].age)
+            {
+                struct fot cmmp;
+                joueurs[i] = joueurs[j];
+                joueurs[j] = cmmp;
+            }
+        }
+    }
+    for (int i = 0; i < player; i++)
+    {
+        printf(" le nom: %s\nla age%d", joueurs[i].name, joueurs[i].age);
     }
 }
