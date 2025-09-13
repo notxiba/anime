@@ -63,7 +63,7 @@ int main()
 }
     do
     {
-        printf("1, ajouter un contact\n2, Afficher la liste de tous les joueurs\n3, modifier un contact\n4, supprimer un contact\n5, rechercher un contact\n6, Statistiques\n0, entri pur sourti\n");
+        printf("1, ajouter un joueur\n2, Afficher la liste de tous les joueurs\n3, modifier un joueur\n4, supprimer un joueur\n5, rechercher un joueur\n6, Statistiques\n0, entri pur sourti\n");
         scanf("%d", &choice);
         switch (choice)
         {
@@ -528,38 +528,22 @@ void buteur()
 }
 void stage()
 {
-    for (int i = 0; i < player - 1; i++)
+    int mini = joueurs[0].age;
+    int maxi = joueurs[0].age;
+    for (int i = 0; i < player ; i++)
     {
-        for (int j = i + 1; j < player; j++)
-        {
-            if (joueurs[i].age > joueurs[j].age)
+            if (joueurs[i].age < mini)
             {
-                struct fot cmmp;
-                joueurs[i] = joueurs[j];
-                joueurs[j] = cmmp;
+                mini=joueurs[i].age;
+                
+            }
+            if(joueurs[i].age>maxi){
+                maxi = joueurs[i].age;
             }
         }
-    }
-    for (int i = 0; i < player; i++)
-    {
-        printf(" le nom: %s\nla age%d", joueurs[i].name, joueurs[i].age);
-    }
-    for (int i = 0; i < player - 1; i++)
-    {
-        for (int j = i + 1; j < player; j++)
-        {
-            if (joueurs[i].age > joueurs[j].age)
-            {
-                struct fot cmmp;
-                joueurs[i] = joueurs[j];
-                joueurs[j] = cmmp;
-            }
-        }
-    }
-    for (int i = 0; i < player; i++)
-    {
-        printf(" le nom: %s\nla age%d", joueurs[i].name, joueurs[i].age);
-    }
+        printf("mini age: %d\n", mini);
+        printf("max age : %d\n", maxi);
+    
 }
         
 
